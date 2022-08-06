@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
+  primary: "#FF0088",
   background: "#000000",
   lightBackground: "#333333",
   text: {
