@@ -5,6 +5,7 @@ const styles = {
     maxWidth: 500,
     background: theme.lightBackground,
     cursor: "pointer",
+    minHeight: 300,
   },
   title: {
     color: theme.text.primary,

@@ -6,7 +6,6 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import theme from "../../theme";
 import styles from "./styles";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -29,7 +28,7 @@ function Index({ index, title, desc }) {
           </CardContent>
           <CardActions>
             <Link to={`/visualiser/${title}`}>
-              <Button size="small">Learn More</Button>
+              <Button size="small">Visualise</Button>
             </Link>
           </CardActions>
         </Card>

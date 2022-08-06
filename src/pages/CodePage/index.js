@@ -11,19 +11,34 @@ import theme from "../../theme";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import bubbleSort from "../../utils/bubbleSort";
+import insertionSort from "../../utils/insertionSort";
+import selectionSort from "../../utils/selectionSort";
+import { useParams } from "react-router-dom";
 
 function CodePage() {
-  const [lang, setLang] = React.useState();
-  const [algo, setAlgo] = React.useState("BubbleSort");
+  let { algorithm } = useParams();
+  const [lang, setLang] = React.useState("");
+  const [algo, setAlgo] = React.useState(algorithm);
   const [result, setResult] = React.useState();
 
   const handleChange = (event) => {
     setLang(event.target.value);
     switch (algo) {
-      case "BubbleSort":
-        console.log(lang);
+      case "Bubble Sort":
         bubbleSort.map((item) => {
-          item?.lang === event.target.value ? setResult(item) : setResult(null);
+          item?.lang === event.target.value ? setResult(item) : console.log();
+        });
+        break;
+
+      case "Insertion Sort":
+        insertionSort.map((item) => {
+          item?.lang === event.target.value ? setResult(item) : console.log();
+        });
+        break;
+
+      case "Selection Sort":
+        selectionSort.map((item) => {
+          item?.lang === event.target.value ? setResult(item) : console.log();
         });
         break;
 
@@ -38,12 +53,15 @@ function CodePage() {
         sx={{
           width: 300,
           height: window.innerHeight,
-          position: "absolute",
+          position: "fixed",
           backgroundColor: theme.lightBackground,
           padding: 2,
         }}
       >
-        <FormControl fullWidth>
+        <Typography variant="h2" color="white">
+          {algorithm}
+        </Typography>
+        <FormControl fullWidth sx={{ mt: 2 }}>
           <InputLabel id="demo-simple-select-label" sx={{ color: "white" }}>
             Language
           </InputLabel>
@@ -55,22 +73,22 @@ function CodePage() {
             onChange={handleChange}
             sx={{ color: "white" }}
           >
-            <MenuItem value={10}>C++</MenuItem>
-            <MenuItem value={20}>Python</MenuItem>
-            <MenuItem value={30}>Javascript</MenuItem>
+            <MenuItem value={"C++"}>C++</MenuItem>
+            <MenuItem value={"Python"}>Python</MenuItem>
+            <MenuItem value={"Javascript"}>Javascript</MenuItem>
           </Select>
         </FormControl>
         <Typography
           variant="body1"
           color="white"
-          sx={{ whiteSpace: "pre-line", mt: 8 }}
+          sx={{ whiteSpace: "pre-line", mt: 4 }}
         >
           {result?.info}
         </Typography>
       </Box>
       <div style={{ marginLeft: 400 }}>
         <SyntaxHighlighter
-          language="javascript"
+          language={lang.toLowerCase()}
           style={atomOneDark}
           customStyle={{ background: "black" }}
           showLineNumbers
