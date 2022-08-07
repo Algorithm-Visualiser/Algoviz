@@ -21,7 +21,6 @@ function VisualiserPage() {
     for (let i = 0; i < size; i++) {
       newArray.push(getRandomInt(100));
     }
-    console.log("setting newarray");
     setArray(newArray);
   }
   function onSetSpeed(event) {
